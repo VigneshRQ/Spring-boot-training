@@ -28,4 +28,6 @@ public class BankAccountDetails {
 
     @Column(name = "LAST_UPDATED")
     private Date lastUpdated;
+
+    private Address address;
 }
