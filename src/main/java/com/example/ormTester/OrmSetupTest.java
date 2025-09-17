@@ -1,13 +1,13 @@
 package com.example.ormTester;
 
 import jakarta.annotation.PostConstruct;
-//import jakarta.persistence.EntityManager;
 //import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-//import org.hibernate.Session;
+import org.hibernate.Session;
 //import org.hibernate.SessionFactory;
-//import org.hibernate.Transaction;
-//import org.hibernate.cfg.Configuration;
+import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,27 +35,33 @@ public class OrmSetupTest {
 	  bankObj.setCreatedDate(new Date());
 	  bankObj.setLastUpdated(new Date());
 
+	  BankAccountDetails bankObj1 = new BankAccountDetails();
 
-	  // Under the hood Working of hibernate
-//	  Configuration config = new Configuration();
-//	  config.addAnnotatedClass(com.example.ormTester.BankAccountDetails.class);
-//      config.configure();
+	  // Under the hood Working of hibernate for Reading and writing data from DB
+//	  SessionFactory config = new Configuration()
+//			  .addAnnotatedClass(com.example.ormTester.BankAccountDetails.class)
+//			  .configure().buildSessionFactory();
 //
-//	  SessionFactory sf = config.buildSessionFactory();
-//	  Session session = sf.openSession();
+//	  Session session = config.openSession();
 //
-//	  Transaction transaction = session.beginTransaction();
+//	  try {
+//            //Write the object
+////			Transaction writeTransaction = session.beginTransaction();
+////            session.persist(bankObj);
+////			writeTransaction.commit();
+//			// Retrieve the object
+//			Transaction readTransaction = session.beginTransaction();
+//			bankObj1 = session.get(BankAccountDetails.class, "AC10899");
+//			readTransaction.commit();
 //
-//      session.persist(bankObj);
-//      transaction.commit();
-//	  session.flush(); // Explicitly flush changes
-//		session.close(); // Explicitly close session
-//		sf.close(); // Close session factory
-
-		// Alternate approach
-//		entityManager.persist(bankObj);
-
-		repository.save(bankObj);
-	  System.out.println("Magically ----- : "+ bankObj);
+//			System.out.println("Magically ----- : "+ bankObj1);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			session.close();
+//			config.close();
+//		}
+		bankObj1 = repository.findById("AC10899").orElse(null);;
+		System.out.println("Magically ----- : "+ bankObj1);
 	}
 }
