@@ -11,7 +11,7 @@ public class DockerJDBCTestClass {
     @Autowired
 	private Environment env;
 
-	private static final String TARGET_TABLE = "ACCOUNT_HEADERS";
+	private static final String TARGET_TABLE = "ACCOUNT_HOLDERS";
 
 	public static void main(String[] args) {
 		SpringApplication.run(DockerJDBCTestClass.class, args);
