@@ -1,16 +1,13 @@
 package com.example.ormTester;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "BANK_ACCOUNT_DETAILS", schema = "LUCIFER")
+@Table(name = "BANK_DETAILS", schema = "LUCIFER")
 @Data
 public class BankAccountDetails {
     @Id
@@ -29,5 +26,7 @@ public class BankAccountDetails {
     @Column(name = "LAST_UPDATED")
     private Date lastUpdated;
 
+    @ManyToOne(cascade = CascadeType.ALL)  // Keep @OneToOne
+    @JoinColumn(name = "POSTAL_CODE")  // Add join column
     private Address address;
 }
