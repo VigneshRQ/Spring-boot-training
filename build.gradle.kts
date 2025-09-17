@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	compileOnly ("org.projectlombok:lombok:1.18.30")
 	annotationProcessor("org.projectlombok:lombok:1.18.30")
+	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Optional: if using JPA
 	implementation("com.oracle.database.jdbc:ojdbc11:23.9.0.25.07")// Oracle JDBC driver
