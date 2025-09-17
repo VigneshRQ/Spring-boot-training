@@ -29,9 +29,9 @@ public class OrmSetupTest {
 	public void init(){
       BankAccountDetails bankObj = new BankAccountDetails();
 
-	  bankObj.setAccountId("ACKR4533");
+	  bankObj.setAccountId("ACKR45380");
 	  bankObj.setBranchName("SRH Branch");
-	  bankObj.setAccountBalance(new BigDecimal("705.56"));
+	  bankObj.setAccountBalance(new BigDecimal("500.56"));
 	  bankObj.setCreatedDate(new Date());
 	  bankObj.setLastUpdated(new Date());
 
@@ -43,25 +43,47 @@ public class OrmSetupTest {
 //			  .configure().buildSessionFactory();
 //
 //	  Session session = config.openSession();
-//
+
 //	  try {
 //            //Write the object
 ////			Transaction writeTransaction = session.beginTransaction();
 ////            session.persist(bankObj);
 ////			writeTransaction.commit();
 //			// Retrieve the object
-//			Transaction readTransaction = session.beginTransaction();
-//			bankObj1 = session.get(BankAccountDetails.class, "AC10899");
-//			readTransaction.commit();
+////			Transaction readTransaction = session.beginTransaction();
+////			bankObj1 = session.get(BankAccountDetails.class, "AC10899");
+////			readTransaction.commit();
+////			Update the object
+////		 	 Transaction writeTransaction = session.beginTransaction();
+////           session.merge(bankObj);
+//		  // Delete the object
+////		     bankObj1 = session.find(BankAccountDetails.class,"ACKR4533");
+////		     session.remove(bankObj1);
+////				writeTransaction.commit();
 //
-//			System.out.println("Magically ----- : "+ bankObj1);
+//			System.out.println("Magically ----- : "+ bankObj);
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		} finally {
 //			session.close();
 //			config.close();
 //		}
-		bankObj1 = repository.findById("AC10899").orElse(null);;
-		System.out.println("Magically ----- : "+ bankObj1);
+
+		//Update by JPA
+		bankObj1 = repository.findById("ACKR45380").orElse(null);
+		if(bankObj1 != null){
+			bankObj1.setAccountBalance(bankObj.getAccountBalance());
+			bankObj1.setBranchName(bankObj.getBranchName());
+			bankObj1.setLastUpdated(bankObj1.getLastUpdated());
+			bankObj1.setCreatedDate((bankObj.getCreatedDate()));
+			repository.save(bankObj1);
+		}else{
+			repository.save(bankObj);
+		}
+
+		//Delete by JPA
+		repository.deleteById("ACKR45380");
+
+		System.out.println("Magically ----- : "+ bankObj);
 	}
 }
