@@ -27,6 +27,11 @@ public class OrmSetupTest {
     @PostConstruct
 	@Transactional /* Transactional basically resolves all the config , config factory , and session handling and does hbm 2 ddl conversions defined in config file*/
 	public void init(){
+		Address a1 = new Address();
+		a1.setCity("Chennai");
+		a1.setState("Tamil Nadu");
+		a1.setPincode("600061");
+
       BankAccountDetails bankObj = new BankAccountDetails();
 		BankAccountDetails bankObj1 = new BankAccountDetails();
 		bankObj1.setAccountId("ACSK738990");
@@ -34,17 +39,15 @@ public class OrmSetupTest {
 		bankObj1.setAccountBalance(new BigDecimal("333.89"));
 		bankObj1.setCreatedDate(new Date());
 		bankObj1.setLastUpdated(new Date());
+		bankObj1.setAddress(a1);
 
 	  bankObj.setAccountId("ACSK738990");
 	  bankObj.setBranchName("CSK Branch");
 	  bankObj.setAccountBalance(new BigDecimal("7777.21"));
 	  bankObj.setCreatedDate(new Date());
 	  bankObj.setLastUpdated(new Date());
+	  bankObj.setAddress(a1);
 
-		Address a1 = new Address();
-		a1.setCity("Chennai");
-		a1.setState("Tamil Nadu");
-		a1.setPincode("600061");
 		a1.setBankAccounts(List.of(bankObj,bankObj1));
 //      bankObj.setAddress(a1);
 //	  BankAccountDetails bankObj1 = new BankAccountDetails();
@@ -92,6 +95,7 @@ public class OrmSetupTest {
 //			repository.save(bankObj1);
 //		}else{
 			repository.save(bankObj);
+			repository.save(bankObj1);
 //		}
 //
 //		//Delete by JPA

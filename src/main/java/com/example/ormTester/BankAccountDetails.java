@@ -26,7 +26,6 @@ public class BankAccountDetails {
     @Column(name = "LAST_UPDATED")
     private Date lastUpdated;
 
-    @ManyToOne(cascade = CascadeType.ALL)  // Keep @OneToOne
-    @JoinColumn(name = "POSTAL_CODE")  // Add join column
+    @OneToOne(cascade = CascadeType.ALL)  // Keep @OneToOne
     private Address address;
 }
