@@ -19,12 +19,14 @@ repositories {
 }
 
 dependencies {
-	compileOnly ("org.projectlombok:lombok:1.18.30")
-	annotationProcessor("org.projectlombok:lombok:1.18.30")
+	implementation("org.liquibase:liquibase-core")
 	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Optional: if using JPA
+	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("com.oracle.database.jdbc:ojdbc11:23.9.0.25.07")// Oracle JDBC driver
+	compileOnly ("org.projectlombok:lombok:1.18.30")
+	annotationProcessor("org.projectlombok:lombok:1.18.30")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
