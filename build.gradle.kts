@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
 	implementation("org.springframework.boot:spring-boot-starter")
