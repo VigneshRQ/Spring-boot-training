@@ -45,7 +45,7 @@ public class AuthControllerTest {
     }
 
     @Test
-    void testRegisterUserInvalid() throws Exception  {
+    void testRegisterUserEmailInvalid() throws Exception  {
         String requestBody ="{\"username\":\"test2\",\"email\":\"\",\"password\":\"password123\"}";
         mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -54,4 +54,13 @@ public class AuthControllerTest {
                 .andExpect(jsonPath("$.email").value("Email is mandatory"));
     }
 
+    @Test
+    void testRegisterUserUsernameInvalid() throws Exception  {
+        String requestBody ="{\"username\":\"\",\"email\":\"test1@gmail.com\",\"password\":\"password123\"}";
+        mockMvc.perform(post("/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.username").value("User Name is mandatory"));
+    }
 }

@@ -30,6 +30,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.liquibase:liquibase-core")
+	implementation ("org.springframework.boot:spring-boot-starter-data-redis")
+	implementation ("com.sendgrid:sendgrid-java:4.9.3")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc11")
 	annotationProcessor("org.projectlombok:lombok")
