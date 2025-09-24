@@ -20,6 +20,9 @@ repositories {
 
 dependencies {
 	implementation("org.liquibase:liquibase-core")
+//	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Optional: if using JPA
