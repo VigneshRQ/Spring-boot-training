@@ -14,27 +14,35 @@ java {
 	}
 }
 
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.liquibase:liquibase-core")
-	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Optional: if using JPA
-	implementation("org.springframework.boot:spring-boot-starter-jdbc")
-	implementation("com.oracle.database.jdbc:ojdbc11:23.9.0.25.07")// Oracle JDBC driver
-	compileOnly ("org.projectlombok:lombok:1.18.30")
-	annotationProcessor("org.projectlombok:lombok:1.18.30")
+	implementation ("org.springframework.boot:spring-boot-starter-data-redis")
+	implementation ("com.sendgrid:sendgrid-java:4.9.3")
+	compileOnly("org.projectlombok:lombok")
+	runtimeOnly("com.oracle.database.jdbc:ojdbc11")
+	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-// For Gradle 5.0 and above
-configurations {
-	compileOnly {
-		extendsFrom(annotationProcessor.get())
-	}
+	testImplementation ("io.rest-assured:rest-assured:5.4.0")
+	// JWT
+	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 }
 
 tasks.withType<Test> {
