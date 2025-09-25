@@ -1,5 +1,6 @@
 package com.example.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +26,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+//    @JsonIgnore # this could be a quick fix just if i need some column to be unsent to user in response ideal is DTO
     private String password;
 
     @CreationTimestamp
