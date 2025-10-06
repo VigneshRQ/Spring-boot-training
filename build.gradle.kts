@@ -19,16 +19,27 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.liquibase:liquibase-core")
-	implementation("org.hibernate.orm:hibernate-core:6.4.8.Final")
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Optional: if using JPA
-	implementation("org.springframework.boot:spring-boot-starter-jdbc")
-	implementation("com.oracle.database.jdbc:ojdbc11:23.9.0.25.07")// Oracle JDBC driver
-	compileOnly ("org.projectlombok:lombok:1.18.30")
-	annotationProcessor("org.projectlombok:lombok:1.18.30")
+	// Redis for message contractor for data transfer
+	implementation ("org.springframework.boot:spring-boot-starter-data-redis")
+	// Sendgrid for mail sending or receiving service
+	implementation ("com.sendgrid:sendgrid-java:4.9.3")
+	compileOnly("org.projectlombok:lombok")
+	runtimeOnly("com.oracle.database.jdbc:ojdbc11")
+	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation ("io.rest-assured:rest-assured:5.4.0")
+	// JWT Implementation and run time dependencies
+	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	implementation("io.github.cdimascio:dotenv-java:3.0.0")
 }
 // For Gradle 5.0 and above
 configurations {
