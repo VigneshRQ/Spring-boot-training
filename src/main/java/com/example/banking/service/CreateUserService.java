@@ -58,7 +58,7 @@ public class CreateUserService {
         User user = User.builder()
                 .username(request.getUsername().trim())
                 .email(request.getEmail().trim()) // Store encoded email if needed
-                .password(request.getPassword()) // Store encoded password
+                .password(encodedPassword) // Store encoded password
                 .build();
 
         User savedUser = userRepository.save(user);

@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
-
+import io.github.cdimascio.dotenv.Dotenv;
 @SpringBootApplication
 
 public class BankingApplication {
@@ -17,6 +17,7 @@ public class BankingApplication {
 //	private UserRepository repo;
 
 	public static void main(String[] args) {
+		Dotenv dotenv = Dotenv.configure().load();
 		SpringApplication.run(BankingApplication.class, args);
 	}
 

@@ -24,7 +24,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.liquibase:liquibase-core")
+	// Redis for message contractor for data transfer
 	implementation ("org.springframework.boot:spring-boot-starter-data-redis")
+	// Sendgrid for mail sending or receiving service
 	implementation ("com.sendgrid:sendgrid-java:4.9.3")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc11")
@@ -33,10 +35,11 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation ("io.rest-assured:rest-assured:5.4.0")
-	// JWT
+	// JWT Implementation and run time dependencies
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	implementation("io.github.cdimascio:dotenv-java:3.0.0")
 }
 // For Gradle 5.0 and above
 configurations {
