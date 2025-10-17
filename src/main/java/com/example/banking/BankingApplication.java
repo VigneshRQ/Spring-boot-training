@@ -10,14 +10,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
 import io.github.cdimascio.dotenv.Dotenv;
-@SpringBootApplication
+import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@SpringBootApplication
+@EnableJpaRepositories(repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
 public class BankingApplication {
 //    @Autowired
 //	private UserRepository repo;
 
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.configure().load();
+//		Dotenv dotenv = Dotenv.configure().load();
+		Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+		dotenv.entries().forEach(entry ->
+				System.setProperty(entry.getKey(), entry.getValue())
+		);
 		SpringApplication.run(BankingApplication.class, args);
 	}
 

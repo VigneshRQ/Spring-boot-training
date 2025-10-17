@@ -40,6 +40,10 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	implementation("io.github.cdimascio:dotenv-java:3.0.0")
+	//Audit logging
+	implementation("org.springframework.boot:spring-boot-starter-aop")
+	implementation("org.springframework.data:spring-data-envers")
+	runtimeOnly("com.h2database:h2")
 }
 // For Gradle 5.0 and above
 configurations {

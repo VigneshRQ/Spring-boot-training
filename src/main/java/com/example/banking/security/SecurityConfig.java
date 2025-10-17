@@ -27,6 +27,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configure(http))// Disable CSRF for API testing
                 .authorizeHttpRequests(authz -> authz
+                        // Allow H2 console access without authentication
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/auth/**").permitAll() // Allow all auth endpoints without authentication
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated() // Secure other endpoints
